@@ -1,0 +1,2 @@
+# pswdman
+Simple password manager
