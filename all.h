@@ -146,7 +146,7 @@ void read_command(){
         save_command();
         return;
     }
-
+    
     printf("Command not found!\n");
     help_command();
 

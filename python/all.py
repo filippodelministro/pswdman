@@ -3,15 +3,13 @@ import os
 
 
 
-OK_CODE = 1
-n_pswd = 0
 
 class pswd_object:
     def __init__(self, service, password):
         self.service = service
         self.password = password
 
-list = []   # list of pswd_objects
+pswd_list = []   # list of pswd_objects
 
 # -----------------------------------------------
 #                  UTILITY FUNCTIONS
@@ -39,10 +37,10 @@ def esc_command():
     exit(0)
 
 def list_command():
-    print("\t#\tname\tpassword\n")
+    print("\t#\tname\t\tpassword\n")
 
     i = 1
-    for obj in list:
+    for obj in pswd_list:
         print("\t" + str(i) + "\t" + obj.service + "\t\t" + obj.password)
         i += 1
 
@@ -50,7 +48,13 @@ def save_command():
     ok = False
 
     serv = input("Insert service you want to save a password for: \n")
-    #todo: find service
+    #todo: check for similar services and prompt it
+    for obj in pswd_list:
+        if obj.service == serv:
+            print("password already register for this service")
+            #todo: add modify password option
+
+            return
 
     while not ok:
         psw = input("password: ")
@@ -61,7 +65,7 @@ def save_command():
         else:
             print("password dont match: retry\n")
 
-    list.append(pswd_object(serv, psw))
+    pswd_list.append(pswd_object(serv, psw))
 
     return OK_CODE
 
@@ -90,5 +94,4 @@ def read_command():
         print("Command not found!\n");
         help_command()
         
-
 
