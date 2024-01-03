@@ -1,6 +1,6 @@
 import sys
 import os
-import xlsxwriter
+import sqlite3
 
 
 class pswd_object:
@@ -11,21 +11,24 @@ class pswd_object:
 pswd_list = []   # list of pswd_objects
 
 
-def init():
-
-    workbook = xlsxwriter.Workbook('pswd.xlsx')
-
-    worksheet = workbook.add_worksheet()
-
-    worksheet.write('A1', 'Service')
-    worksheet.write('B1', 'Password')
-
-    workbook.close()
-
-
 # -----------------------------------------------
 #                  UTILITY FUNCTIONS
 # ----------------------------------------------- 
+
+def init():
+    conn = sqlite3.connect('mydatabase.db')
+
+    cursor = conn.cursor()
+    create_table_query = '''
+    CREATE TABLE IF NOT EXISTS passwords (
+        id INTEGER PRIMARY KEY,
+        nameservice TEXT NOT NULL,
+        password TEXT NOT NULL
+    );
+    '''
+    cursor.execute(create_table_query)
+    conn.commit()
+    conn.close()
 
 def prompt():
     print(">", end='')
