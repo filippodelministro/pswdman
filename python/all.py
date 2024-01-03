@@ -52,7 +52,7 @@ def save_command():
     for obj in pswd_list:
         if obj.service == serv:
             print("password already register for this service")
-            #todo: add modify password option
+            #todo: add "modify password" option
 
             return
 
@@ -66,8 +66,6 @@ def save_command():
             print("password dont match: retry\n")
 
     pswd_list.append(pswd_object(serv, psw))
-
-    return OK_CODE
 
 
 def clear_command():
