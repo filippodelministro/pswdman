@@ -1,3 +1,5 @@
+import query
+
 import sys
 import os
 import sqlite3
@@ -17,17 +19,12 @@ pswd_list = []   # list of pswd_objects
 # ----------------------------------------------- 
 
 def init():
-    conn = sqlite3.connect('mydatabase.db')
-
+    conn = sqlite3.connect('password.db')
     cursor = conn.cursor()
-    create_table_query = '''
-    CREATE TABLE IF NOT EXISTS passwords (
-        id INTEGER PRIMARY KEY,
-        nameservice TEXT NOT NULL,
-        password TEXT NOT NULL
-    );
-    '''
-    cursor.execute(create_table_query)
+    
+    q = query.create_database()
+    cursor.execute(q)
+
     conn.commit()
     conn.close()
 

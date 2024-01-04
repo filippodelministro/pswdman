@@ -1,4 +1,5 @@
 import all
+import query
 
 all.init()
 all.boot_command()
