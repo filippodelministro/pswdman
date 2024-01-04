@@ -3,6 +3,7 @@ import os
 import sqlite3
 
 
+# maybe useless
 class pswd_object:
     def __init__(self, service, password):
         self.service = service
